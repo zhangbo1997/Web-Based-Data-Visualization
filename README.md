@@ -11,4 +11,4 @@
 
 
 #### Note:
-#####Go Live with the index.html file to see the dashboard. Recommend using Chrome
+####Go Live with the index.html file to see the dashboard. Recommend using Chrome
