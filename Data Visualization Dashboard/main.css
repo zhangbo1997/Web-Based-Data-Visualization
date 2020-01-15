@@ -1,0 +1,123 @@
+
+body {
+    background-color: #ece9e6;
+}
+
+
+#switchToPie {
+    /* display: block; */
+    height: 20px; 
+    position: relative; 
+    margin: -20px -10px; 
+    width: 20px; 
+    top:0%; 
+    left:-53%;
+}
+
+#switchToBar {
+    /* display: block; */
+    height: 20px; 
+    position: relative; 
+    margin: -20px -10px; 
+    width: 20px; 
+    top:0%; 
+    left:-47%;
+}
+
+
+table, th, td {
+    border: 0px solid black;
+    /* font-family: IBM Plex Serif,Georgia,Times New Roman,Times,serif; */
+}
+th, td {
+    text-align: right;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid #ccc;
+    color: #333
+}
+#tr0 {
+    border-top: 1.5px solid black;
+}
+#tr11 {
+    border-top: 1.5px solid black;
+    border-bottom: 1.5px solid black;
+}
+#td0 {
+    text-align: left;
+}
+#th0 {
+    text-align: left;
+}
+.green {
+    width: 13px;
+    height: 13px;
+    background:#437607;
+    display: inline-block
+}
+
+.blue {
+    width: 13px;
+    height: 13px;
+    background: #4582B4;
+    display: inline-block
+}
+
+.orange {
+    width: 13px;
+    height: 13px;
+    background: #FDB462;
+    display: inline-block
+}
+
+.red {
+    width: 13px;
+    height: 13px;
+    background: #F35020;
+    display: inline-block
+}
+
+.black {
+    width: 13px;
+    height: 13px;
+    background: #121212;
+    display: inline-block
+}
+
+
+.purple {
+    width: 13px;
+    height: 13px;
+    background: #977AB1;
+    display: inline-block
+}
+
+.sky {
+    width: 13px;
+    height: 13px;
+    background: #88AFD0;
+    display: inline-block
+}
+/* tr {
+    color: #333
+} */
+
+div.headerLine {
+    font-size: 30px;
+    font-family: Playfair Display,Georgia,Times New Roman,Times,serif;
+}
+
+#time_display {
+    font-size: 25px;
+}
+
+#Generation_area_chart, #Price_line_chart, #Temperature_line_chart, #donut_chart {
+    font-family: Playfair Display,Georgia,Times New Roman,Times,serif;
+}

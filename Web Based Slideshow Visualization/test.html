@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/cn/cn-all.js"></script>
+
+<div id="container"></div>
+
+<body>
+    <script>
+    // Prepare demo data
+    // Data is joined to map using value of 'hc-key' property by default.
+    // See API docs for 'joinBy' for more info on linking data and map.
+    var data = [
+        ['cn-gd', 129.49],
+        ['cn-sh', 111.4],
+        ['cn-zj', 118.36],
+        ['cn-ha', 129.43],
+        ['cn-xz', 100.08],
+        ['cn-yn', 113.61],
+        ['cn-ah', 131.07],
+        ['cn-hu', 123.94],
+        ['cn-sa', 116.10],
+        ['cn-cq', 113.80],
+        ['cn-gz', 126.20],
+        ['cn-hn', 125.78],
+        ['cn-sc', 112.98],
+        ['cn-sx', 113.07],
+        ['cn-he', 127.64],
+        ['cn-jx', 128.27],
+        ['cn-nm', 108.87],
+        ['cn-gx', 122.00],
+        ['cn-hl', 115.10],
+        ['cn-fj', 125.71],
+        ['cn-bj', 112.15],
+        ['cn-hb', 118.71],
+        ['cn-ln', 112.91],
+        ['cn-sd', 124.28],
+        ['cn-tj', 114.59],
+        ['cn-js', 121.38],
+        ['cn-qh', 112.69],
+        ['cn-gs', 124.79],
+        ['cn-xj', 105.56],
+        ['cn-jl', 115.67],
+        ['cn-nx', 114.36]
+    ];
+
+    // Create the chart
+    Highcharts.mapChart('container', {
+        chart: {
+            height: 800,
+            width: 1200,
+            map: 'countries/cn/cn-all',
+            backgroundColor: "transparent"
+        },
+
+        title: {
+            text: 'Sex Ratio By Province of Mainland China, 2010'
+        },
+
+        subtitle: {
+            text: 'Data Source: <a href=" "> National Bureau of Statistics of China</a >'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'top'
+            }
+        },
+
+        colorAxis: {
+            min: 100
+        },
+        legend: {
+            title: {
+                text: "Sex Ratio (# Female = 100)"
+            }
+        },
+
+        series: [{
+            data: data,
+            name: 'Sex Ratio',
+            states: {
+                hover: {
+                    //color: 'white'
+                }
+            },
+            dataLabels: {
+                enabled: false,
+                format: '{point.name}'
+            }
+        }]
+    });
+    </script>
+</body>
+</html>

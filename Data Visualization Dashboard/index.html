@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <!-- Script Reference[1] -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <link rel="stylesheet" href="main.css"/>
+
+  </head>
+  <body>
+
+    <div class = "headerLine"><img src="simpson.jpg" width = "50" height = "50">Energy Springfield</div>
+    <table id = "one_big_chart" border = "1" width = 100%>
+      <tr>
+        <td id = "Generation_area_chart" width = "70%"></td>
+        <td id = "dvTable">
+          <div id = "time_display" align = "right"></div>
+          <table id = "table_chart"></table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table>
+            <tr><td id = "Price_line_chart"></td></tr>
+            <tr><td id = "Temperature_line_chart"></td></tr>
+          </table>
+        </td>
+        <td>
+          <!-- <input type = "button" value = "switch to bar" id = "switchToBar" x = 0 on = false></input>
+          <input type = "button" value = "switch to pie" id = "switchToPie" x = 0 on = true></input> -->
+          <input type="image" src="chart-bar-solid.svg" alt="Submit" id = "switchToBar" x = 0 on = false></input>
+          
+          <input type="image" src="chart-pie-solid.svg" alt="Submit" id = "switchToPie" x = 0 on = true></input>
+
+          <div id = "donut_chart"></div>
+        </td>
+      </tr>
+
+    </table>
+
+    </script>
+    <!-- Chart Placement[2] -->
+    <h1></h1>
+    <div id = "one_big_chart">
+      <div id="Generation_area_chart"></div>
+      <div id="Price_line_chart"></div>
+      <div id="Temperature_line_chart"></div>
+      <div id="donut_chart"></div>
+      <div id = "dvTable"></table>
+    </div>
+
+    
+
+    <script>
+    /**
+       * In order to synchronize tooltips and crosshairs, override the
+       * built-in events with handlers defined on the parent element.
+       */
+
+
+      ['mousemove', 'touchmove', 'touchstart'].forEach(function (eventType) {
+
+          document.getElementById("one_big_chart").addEventListener(
+              eventType,
+              function (e) {
+            
+                  var chart,
+                      point,
+                      i,
+                      event;
+
+                  //for (i = 0; i < Highcharts.charts.length; i = i + 1) {
+                  for (i = 0; i < 3; i = i + 1) {
+                      chart = Highcharts.charts[i];
+
+                      event = chart.pointer.normalize(e);
+
+                      point = chart.series[0].searchPoint(event, true);
+
+                      // if (point) {
+                      //     point.highlight(e);
+                      // }
+                      if (i == 0) {
+                        if (point) {
+                           point.highlight(e);
+                        }
+                      } else {
+                        if (point) {
+                           point.highlight2(e);
+                        }
+                      }
+
+                  }
+              }
+          );
+      });
+
+
+      /**
+       * Override the reset function, we don't need to hide the tooltips and
+       * crosshairs.
+       */
+      Highcharts.Pointer.prototype.reset = function () {
+          return undefined;
+      };
+
+      /**
+       * Highlight a point by showing tooltip, setting hover state and draw crosshair
+       */
+       Highcharts.Point.prototype.highlight = function (event) {
+        //console.log(event);
+        event = this.series.chart.pointer.normalize(event);
+        this.onMouseOver(); // Show the hover marker
+        //this.series.chart.tooltip.refresh(this); // Show the tooltip
+        this.series.chart.xAxis[0].drawCrosshair(event, this); // Show the crosshair
+      };
+
+      /**
+       * Highlight a point by showing tooltip, setting hover state and draw crosshair
+       */
+       Highcharts.Point.prototype.highlight2 = function (event) {
+        //console.log(event);
+        event = this.series.chart.pointer.normalize(event);
+        this.onMouseOver(); // Show the hover marker
+        //this.series.chart.tooltip.refresh(this); // Show the tooltip
+        this.series.chart.xAxis[0].drawCrosshair(event, this); // Show the crosshair
+      };
+
+
+      /**
+       * Synchronize zooming through the setExtremes event handler.
+       */
+      function syncExtremes(e) {
+          var thisChart = this.chart;
+
+          if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
+            Highcharts.each(Highcharts.charts, function (chart) {
+                if (chart !== thisChart) {
+                  //console.log(chart.xAxis[0])
+                  if (chart.xAxis[0].setExtremes) { // It is null while updating
+                    chart.xAxis[0].setExtremes(
+                      e.min,
+                      e.max,
+                      undefined,
+                      false,
+                      { trigger: 'syncExtremes' }
+                    );
+                  }
+                }
+            });
+          }
+      }
+    </script>
+    <script src="main.js"></script>
+    <script>
+        function foo() {
+          //console.log("Document loaded!");
+          generateEmpytTable();
+          plotJSONData();
+          plotJSONData2();
+          plotJSONData3();
+          //generateEmpytTable();
+          //updateTime();
+        };
+
+        document.onload = foo();
+    </script>
+  </body>
+</html>
